@@ -1,7 +1,6 @@
 # Unsupervised-Entity-Matching
 Bridging the Gap: Efficient Unsupervised Entity  Matching Across Multiple Tables
 
-### This code script has been tested in NARNIA.
 ## Overview
 This project implements an advanced data integration solution using semantic embeddings and intelligent record linking techniques. The framework can merge and resolve records across multiple datasets with high precision and recall.
 
@@ -61,5 +60,3 @@ loguru
 - Prune results
 - Evaluate performance
 - Visualize clusters.
-
-##### Please note: I used environment 'idai610'. All the libraries were successfully imported and the code ran.
