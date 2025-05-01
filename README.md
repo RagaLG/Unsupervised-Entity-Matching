@@ -1,62 +1,101 @@
-# Unsupervised-Entity-Matching
-Bridging the Gap: Efficient Unsupervised Entity  Matching Across Multiple Tables
 
-## Overview
-This project implements an advanced data integration solution using semantic embeddings and intelligent record linking techniques. The framework can merge and resolve records across multiple datasets with high precision and recall.
+# 🎯 Unsupervised-Entity-Matching  
+**Bridging the Gap: Efficient Unsupervised Entity Matching Across Multiple Tables**
 
-## Features
-Intelligent attribute selection
-Semantic embedding using SentenceTransformer
-record merging using k-nearest neighbor search
-Noise reduction through pruning
+## 🔍 Overview
+This project presents a robust framework for **unsupervised entity matching** across multiple heterogeneous datasets using **semantic embeddings** and **intelligent record linking**. It is optimized for scalability and accuracy in data integration tasks.
 
-#### Folder: Code Scripts --> Folder: data: Contains folders Music_20 and Music_200. 
-##### Folder Music_20: table_0.csv, table_1.csv , table_2.csv , table_3.csv , table_4.csv 
-##### Folder Music_200: table_0.csv, table_1.csv , table_2.csv , table_3.csv , table_4.csv  
+<img src="flow_diagram.png" alt="Flow Diagram: Embedding and Merging Strategy" width="700"/>
 
-## Jupyter Notebook: 'final_script_pysc_681.ipynb'
-Please note: In order to test the logic, I've included Music_20, a smaller dataset. It will take approximately 8 minutes to run using GPU in narnia.
-Music_200 dataset is a huge dataset. It will take 35 minutes to run. I have included another code script 'final_script_music_200.ipynb' with my results when I ran it. The logic is same.
-#### Required Libraries
-numpy
-pandas
-sentence-transformers
-hnswlib
-scikit-learn
-torch
-tqdm
-loguru
+## ✨ Key Features
+- ✅ Intelligent attribute selection using distance-based heuristics  
+- 🧠 Semantic embedding using `SentenceTransformer`  
+- 🔗 Record merging via k-nearest neighbor (KNN) search  
+- 🧹 Outlier pruning with density-based clustering (similar to DBSCAN)  
 
-#### Sections in final_script_psyc_681:
-- Compress sections (for easier navigation) 
-1) Import Libraries
-2) Setting GPU
-3) Class Table - preprocessing tables
-4) Class Timer - Helps to record time for each step
-5) Logging functions
-6) Approximate Nearest Neighbourhood Search Function - (HNSW library used)
-7) MainArgs - dataclass to configure various parameters
-8) Method to select only the important attributes
-9) Merging tables by finding similar records by using KNN-Search
-10) Class Pruner: Pruning Outliers and mismatched pairs
-11) Class Metric - Evaluate F1 and Pair-wise F
-12) Main Process
-13) Visualization of predictions
+---
 
+## 📁 Folder Structure
 
-#### Running the file
-1) Set your GPU. Change your GPU ID.
-2) In MainArgs:
-- Change data_path and data_name.
-- data_path is the folder in which Music_20 and Music_200 are stored.
-- data_name: Music_20 or Music_200
-- After changing these two variables. Run all cells.
+```text
+Code Scripts/
+├── data/
+│   ├── Music_20/
+│   │   ├── table_0.csv
+│   │   ├── table_1.csv
+│   │   └── ...
+│   └── Music_200/
+│       ├── table_0.csv
+│       ├── table_1.csv
+│       └── ...
+```
 
-##### The main block ties everything together:
-- Read tables
-- Select attributes
-- Generate embeddings
-- Merge tables using knn search
-- Prune results
-- Evaluate performance
-- Visualize clusters.
+---
+
+## 📓 Jupyter Notebook: `final_script_pysc_681.ipynb`
+
+> This notebook runs on the **Music_20** dataset (~8 mins on GPU in Narnia).  
+> For **Music_200**, see `final_script_music_200.ipynb` (~35 mins runtime).
+
+### 🧪 Required Libraries
+```bash
+pip install numpy pandas sentence-transformers hnswlib scikit-learn torch tqdm loguru
+```
+
+### 📜 Notebook Sections (Compressed for Navigation)
+1. Import Libraries  
+2. Set GPU  
+3. `Table` Class – Preprocess CSVs  
+4. `Timer` – Measure runtime  
+5. Logging setup  
+6. Approximate Nearest Neighbors (HNSWlib)  
+7. `MainArgs` – Parameter configuration  
+8. Attribute selector  
+9. Table-wise hierarchical merging using KNN  
+10. `Pruner` – Outlier removal  
+11. `Metric` – Computes F1 & Pairwise-F1  
+12. Main process pipeline  
+13. Visualization of clusters  
+
+---
+
+## 🚀 How to Run
+
+1. Set your **GPU ID** at the top.
+2. In the `MainArgs` section:
+   - Set `data_path` to the folder where `Music_20` or `Music_200` resides.
+   - Set `data_name` to `Music_20` or `Music_200`.
+3. Run all cells to execute the full pipeline:
+   - ✅ Read tables  
+   - 🔍 Select important attributes  
+   - 🧠 Generate embeddings  
+   - 🔗 Merge records with KNN  
+   - 🧹 Prune outliers  
+   - 📊 Evaluate performance  
+   - 📈 Visualize clusters  
+
+---
+
+## 📊 Results
+
+| Dataset     | Precision (%) | Recall (%) | F1 (%) | Pairwise-F1 (%) |
+|-------------|---------------|------------|--------|------------------|
+| Music-20    | 81.98         | 82.82      | 82.40  | 92.66           |
+| Music-200   | 75.47         | 77.14      | 76.29  | 89.73           |
+
+> 📌 *Pairwise-F1* offers a relaxed evaluation by assessing record pair similarity instead of exact tuple matching.
+
+---
+
+## 🔮 Future Work
+- Explore advanced or domain-specific embedding models  
+- Investigate knowledge-graph based similarity  
+- Improve scalability and memory efficiency  
+
+---
+
+## 👤 Author
+**Raga Lagudua Ganesan**  
+Graduate Student – Data Science  
+Rochester Institute of Technology  
+📧 rl1158@rit.edu
